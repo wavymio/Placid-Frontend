@@ -75,8 +75,9 @@ const UserProfileBio = ({ user, sameUser, loggedInUser }) => {
         }
     }
 
-    const isFriend = user?.friends.some((friend) => friend.userId === loggedInUser?._id)
-
+    const isFriend = user?.friends.some((friend) => friend.userId._id === loggedInUser?._id)
+    console.log(user)
+    console.log(loggedInUser)
     return (
         <div className={` w-full flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-5 md:gap-16 xs:px-0 sm:px-10`}>
             {sameUser ? (
