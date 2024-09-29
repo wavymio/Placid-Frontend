@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "react-query"
 import { useToast } from "../contexts/ToastContext"
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 export const useGetUser = (userId) => {
     const { addToast } = useToast()

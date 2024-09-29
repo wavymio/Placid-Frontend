@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { useToast } from "../contexts/ToastContext"
 import { useRef, useState } from "react"
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''
 
 export const useGetMyVideos = () => {
     const { addToast } = useToast()
