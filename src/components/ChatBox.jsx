@@ -196,6 +196,13 @@ const ChatBox = ({ room, loggedInUser, socket, scrollToTop }) => {
         resetInputs()
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            console.log("yse")
+            handleSubmit(event)
+        }
+    }
+
     useEffect(() => {
         if (sendingQueue.length > 0 && !isSending) {
             sendNextMessage()
@@ -326,7 +333,7 @@ const ChatBox = ({ room, loggedInUser, socket, scrollToTop }) => {
                     const containerRect = container.getBoundingClientRect()
                     
                     // if the message is visible, scroll to the bottom 
-                    if (top >= containerRect.top && bottom <= containerRect.bottom) {
+                    if (top >= containerRect.top && bottom <= containerRect.bottom+25) {
                         scrollToMessage(lastMessageIndex)
                     }
                 }
@@ -380,8 +387,8 @@ const ChatBox = ({ room, loggedInUser, socket, scrollToTop }) => {
                             key={index} 
                             className={`text-xs sm:text-sm flex items-end ${message?.senderId?._id === loggedInUser._id ? 'justify-end' : null} gap-3`}>
                                 {((message?.senderId?._id !== loggedInUser._id) && (message?.senderId?._id !== messages[(index + 1)]?.senderId?._id)) ? (
-                                    <div className={`max-h-10 max-w-10 xs:max-h-12 xs:max-w-12 p-1 rounded-full border ${getBorderColour(message?.senderId?._id)}`}>
-                                        <img src={message.senderId.profilePicture} className='object-cover rounded-full ' />
+                                    <div className={`h-10 w-10 xs:h-12 xs:w-12 p-1 rounded-full border ${getBorderColour(message?.senderId?._id)}`}>
+                                        <img src={message.senderId.profilePicture} className='h-full w-full object-cover rounded-full ' />
                                     </div>
                                 ) : (
                                     <div className='h-10 w-10 xs:h-12 xs:w-12 p-1 rounded-full border border-neutral-900 opacity-0'></div>
@@ -440,7 +447,7 @@ const ChatBox = ({ room, loggedInUser, socket, scrollToTop }) => {
                     </div>
                 </div>
             )}
-            <form onSubmit={handleSubmit} className='px-1 border-t-1 border-black h-12 bg-black sm:rounded-b-xl sm:py-5 sm:px-3 sm:h-24 sm:border-neutral-900 sm:bg-neutral-900 flex items-center absolute left-0 bottom-0 w-full'>
+            <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className='px-1 border-t-1 border-black h-12 bg-black sm:rounded-b-xl sm:py-5 sm:px-3 sm:h-24 sm:border-neutral-900 sm:bg-neutral-900 flex items-center absolute left-0 bottom-0 w-full'>
                 <div className='relative cursor-pointer w-16 h-full flex items-center justify-center border-r border-neutral-900 rounded-l-lg bg-neutral-950 sm:p-3 sm:h-full sm:w-16 hover:bg-neutral-800 transition-colors ease-in-out duration-300'>
                     <IoMdAttach />
                     <input ref={fileInputRef} onChange={handleImageMessageChange} type='file' accept='image/*' className='absolute top-0 left-0 cursor-pointer opacity-0 border h-full w-full border-red-600' />
