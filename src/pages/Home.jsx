@@ -68,11 +68,11 @@ const Home = () => {
 
     return (
         <div className={`flex flex-col gap-7 xs:gap-10 sm:gap-20`}>
-            {trendingRooms.length > 0 && (
+            {trendingRooms?.length > 0 && (
                 <HomeRooms socket={socket} rooms={trendingRooms} isLoggedIn={isLoggedIn} setOpenLogin={setOpenLogin} setRoomId={setRoomId} category={"trending"} />
             )}
 
-            {recentRooms.length > 0 && (
+            {recentRooms?.length > 0 && (
                 <HomeRooms socket={socket} rooms={recentRooms} isLoggedIn={isLoggedIn} setOpenLogin={setOpenLogin} setRoomId={setRoomId} category={"recent"} />
             )}
 
