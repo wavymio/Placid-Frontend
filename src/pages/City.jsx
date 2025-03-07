@@ -12,10 +12,10 @@ import house6 from '../assets/house6.avif'
 import house7 from '../assets/house7.avif'
 import house8 from '../assets/house8.avif'
 import house9 from '../assets/house9.avif'
-import house10 from '../assets/house10.avif'
-import house11 from '../assets/house11.avif'
-import house12 from '../assets/house12.avif'
-import house13 from '../assets/house13.avif'
+// import house10 from '../assets/house10.avif'
+// import house11 from '../assets/house11.avif'
+// import house12 from '../assets/house12.avif'
+// import house13 from '../assets/house13.avif'
 import { debounce } from 'lodash'
 
 const City = () => {
@@ -50,10 +50,10 @@ const City = () => {
         { id: 53, owner: "User123", building: house7 },
         { id: 54, owner: "User123", building: house8 },
         { id: 101, owner: "User123", building: house9 },
-        { id: 102, owner: "User123", building: house10 },
-        { id: 103, owner: "User123", building: house11 },
-        { id: 104, owner: "User123", building: house12 },
-        { id: 105, owner: "User123", building: house13 },
+        // { id: 102, owner: "User123", building: house10 },
+        // { id: 103, owner: "User123", building: house11 },
+        // { id: 104, owner: "User123", building: house12 },
+        // { id: 105, owner: "User123", building: house13 },
     ]
 
     const [viewport, setViewport] = useState({
