@@ -15,6 +15,7 @@ import { debounce } from 'lodash'
 import LandImage from '../components/LandImage'
 import { FaSkullCrossbones, FaUser } from 'react-icons/fa'
 import { useTimeFilter } from '../hooks/timeFilter'
+import { IoCloseCircle } from 'react-icons/io5'
 
 const City = () => {
     const { continentId, countryId, cityId } = useParams()
@@ -130,6 +131,7 @@ const City = () => {
                 width: withWater ? 61 : 60,
                 height: withWater ? 61 : 60,
                 waterPatch: !!withWater,
+                waterType: withWater ? 'Lake' : null,
                 building: room ? room.building : null,
                 lights: room ? !!room.lights : null,
                 buildingType: room?.building ? room.buildingType : null
@@ -399,8 +401,11 @@ const City = () => {
             </TransformWrapper>
 
             {openLandDetails && selectedLand && (
-                <div className={`${myContinent?.name === "Eldoria" ? "black-opacity-card" : "white-opacity"} flex flex-col gap-4 room-event-animation w-[200px] lg:min-h-[300px] lg:h-fit lg:w-[300px] absolute
-                top-10 right-10 lg:top-10 lg:left-10 rounded-3xl p-5 text-white`}>
+                <div className={` ${myContinent?.name === "Eldoria" ? "black-opacity-card" : "white-opacity"} flex flex-col gap-4 room-event-animation w-[300px] sm:w-[250px] h-[198px] overflow-y-auto scrollable lg:min-h-[300px] lg:h-fit lg:w-[300px] absolute
+                bottom-10 right-10 sm:top-10 sm:right-10 lg:top-10 lg:left-10 rounded-3xl p-5 text-white`}>
+                    <IoCloseCircle 
+                    onClick={() => setOpenLandDetails(false)}
+                    className='h-6 w-6 absolute top-5 left-4 cursor-pointer hover:text-neutral-900 transition-all ease-in-out duration-300' />
                     <div className='text-md lg:text-xl font-normal h-[15%] text-end'>{myCity.name.slice(0, 3)}0{selectedLand.id}</div>
                     <div className='h-85% flex flex-col gap-6'>
 
@@ -418,10 +423,16 @@ const City = () => {
                                 </div>
                             )}
                             {selectedLand.waterPatch ? (
-                                <div className='flex w-full items-center gap-4 justify-between'>
-                                    <div>Sealife:</div>
-                                    <div>95</div>
-                                </div>
+                                <>
+                                    <div className='flex w-full items-center gap-4 justify-between'>
+                                        <div>Type:</div>
+                                        <div>{selectedLand.waterType}</div>
+                                    </div>
+                                    <div className='flex w-full items-center gap-4 justify-between'>
+                                        <div>Sealife:</div>
+                                        <div>95</div>
+                                    </div>
+                                </>
                             ) : (
                                 <>
                                     <div className='flex w-full items-center gap-4 justify-between'>
@@ -449,15 +460,15 @@ const City = () => {
                             </div>
                         </div>
 
-                        <div className={`flex w-full items-center ${selectedLand.exists ? 'justify-end' : 'justify-between'} `}>
+                        <div className={`blur-background rounded-t-lg sticky bottom-0 left-0 flex w-full items-center ${selectedLand.exists ? 'justify-end' : 'justify-between'} `}>
                             {!selectedLand.exists && (
                                 <div onClick={() => null}
-                                className='py-3 lg:py-4 border-2 border-white rounded-lg w-[40%] lg:w-[35%] text-center cursor-pointer text-[10px] lg:text-xs font-bold tracking-wide hover:bg-white hover:text-black transition-all ease-out duration-500'>
+                                className='py-3 lg:py-4 border-2 border-white rounded-r-lg w-[40%] lg:w-[35%] text-center cursor-pointer text-[10px] lg:text-xs font-bold tracking-wide bg-white text-black hover:bg-neutral-800 hover:text-white transition-all ease-out duration-500'>
                                     Claim
                                 </div>
                             )}
                             <div onClick={() => navigate(`/room/66fbe68beb3eb71e0c26fb8c`)}
-                            className='py-3 lg:py-4 border-2 border-white rounded-lg w-[40%] lg:w-[35%] text-center cursor-pointer text-[10px] lg:text-xs font-bold tracking-wide hover:bg-white hover:text-black transition-all ease-out duration-500'>Explore</div>
+                            className='py-3 lg:py-4 border-2 border-white rounded-l-lg w-[40%] lg:w-[35%] text-center cursor-pointer text-[10px] lg:text-xs font-bold tracking-wide bg-white text-black hover:bg-neutral-800 hover:text-white transition-all ease-out duration-500'>Explore</div>
                         </div>
                         
                     </div>

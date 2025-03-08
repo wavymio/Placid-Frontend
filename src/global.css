@@ -198,6 +198,17 @@ body {
   cursor: pointer;
 }
 
+/* Hide Scrollbar */
+.scrollable {
+  overflow: auto; 
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome, Safari */
+}
+
 /* Blur Effect */
 .backdrop-blur-custom {
   backdrop-filter: blur(24px);

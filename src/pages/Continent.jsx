@@ -114,6 +114,8 @@ const Continent = () => {
                         className='cursor-pointer'>
                             <path d={getContinentScale(myContinent)}  
                             fill={`url(#${myContinent.gradientId})`} stroke={myContinent.sand} strokeWidth="5" />
+                            <path d={getContinentScale(myContinent)}  
+                            fill={`rgba(0, 0, 0, ${timeFilter})`} stroke={myContinent.sand} strokeWidth="5" />
 
                             {myContinent.countries?.map(country => (
                                 <path 
